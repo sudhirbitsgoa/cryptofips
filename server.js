@@ -19,7 +19,9 @@ var db = null,
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
-  require('./aes.js');
+  console.log('some crypto test');
+  res.json('some text');
+  // require('./aes.js');
 });
 
 app.get('/pagecount', function (req, res) {
