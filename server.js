@@ -2,6 +2,7 @@
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
+const crypto = require('crypto');
 
 Object.assign=require('object-assign')
 
@@ -20,6 +21,15 @@ app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
   console.log('some crypto test');
+  let cipher = crypto.createCipher('aes192', '77cb54b4-6f08-429d-a558-add6cc8599e8');
+  let decipher = crypto.createDecipher('aes192', '77cb54b4-6f08-429d-a558-add6cc8599e8');
+
+  let encrypted = cipher.update('this is plain string to encrypt', 'utf8', 'hex');
+  encrypted += cipher.final('hex');
+  let plain = decipher.update(encrypted, 'hex', 'utf8')
+  plain += decipher.final('utf8');
+  console.log(encrypted)
+  console.log('the plain', plain);
   res.json('some text');
   // require('./aes.js');
 });
