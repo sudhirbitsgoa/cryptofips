@@ -1,4 +1,5 @@
 //  OpenShift sample Node application
+'use strict'
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
